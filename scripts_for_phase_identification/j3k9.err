@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/data/gulab/yzdai/data4/phase_identification/scripts_for_phase_identification/joint_dis.py", line 47, in <module>
+    phase = np.loasdtxt(phase_file)[:,1:]
+  File "/data/gulab/yzdai/anaconda3/envs/density/lib/python3.7/site-packages/numpy/__init__.py", line 314, in __getattr__
+    "{!r}".format(__name__, attr))
+AttributeError: module 'numpy' has no attribute 'loasdtxt'

@@ -1,0 +1,376 @@
+/data/gulab/yzdai/data4/phase_identification/phase_out/psmdopochl/19000-20000/psmdopochl-rawdata.xvg
+Lo---------
+PSM:DOPC:POPC:CHOL
+0.54:0.06:0.05:0.35 
+0.02:0.01:0.01:0.02 
+Scd
+PSM: 0.36 ± 0.05
+DOPC: 0.26 ± 0.05
+POPC: 0.31 ± 0.05
+Area
+PSM: 48.80 ± 4.25
+DOPC: 50.59 ± 4.15
+POPC: 48.86 ± 4.21
+CHOL: 24.92 ± 2.99
+Ld---------
+PSM:DOPC:POPC:CHOL
+0.20:0.46:0.09:0.25 
+0.02:0.02:0.01:0.01 
+Scd
+PSM: 0.31 ± 0.07
+DOPC: 0.22 ± 0.07
+POPC: 0.26 ± 0.07
+Area
+PSM: 52.12 ± 5.10
+DOPC: 54.27 ± 5.64
+POPC: 53.34 ± 5.47
+CHOL: 24.77 ± 3.02
+
+Scd PSM: KL: 0.34 WD: 0.03
+Scd DOPC: KL: 0.25 WD: 0.01
+Scd POPC: KL: 0.35 WD: 0.04
+Area PSM: KL: 0.24 WD: 1.75
+Area DOPC: KL: 0.29 WD: nan
+Area POPC: KL: 0.39 WD: 2.80
+
+lo ratio: 0.450009765625 
+CHOL lo: 0.5316447368421052
+
+/data/gulab/yzdai/data4/atomdensity/HMM/all_train/psmdopochl/train7-psmdopochl300k-rawdata.xvg
+Lo---------
+PSM:DOPC:POPC:CHOL
+0.50:0.09:0.07:0.34 
+0.02:0.02:0.01:0.01 
+Scd
+PSM: 0.35 ± 0.06
+DOPC: 0.25 ± 0.06
+POPC: 0.29 ± 0.06
+Area
+PSM: 49.14 ± 4.45
+DOPC: 51.67 ± 4.53
+POPC: 50.59 ± 4.95
+CHOL: 24.91 ± 2.99
+Ld---------
+PSM:DOPC:POPC:CHOL
+0.19:0.48:0.08:0.25 
+0.03:0.03:0.01:0.02 
+Scd
+PSM: 0.32 ± 0.07
+DOPC: 0.22 ± 0.07
+POPC: 0.25 ± 0.07
+Area
+PSM: 51.71 ± 5.15
+DOPC: 54.36 ± 5.71
+POPC: 53.32 ± 5.70
+CHOL: 24.76 ± 3.03
+
+Scd PSM: KL: 0.18 WD: 0.02
+Scd DOPC: KL: 0.13 WD: nan
+Scd POPC: KL: 0.16 WD: 0.02
+Area PSM: KL: 0.14 WD: nan
+Area DOPC: KL: 0.16 WD: nan
+Area POPC: KL: 0.13 WD: nan
+CHOL Lo: 0.5328947368421053 CHOL Ld: 0.4671052631578947
+0.482421875
+
+/data/gulab/yzdai/data4/phase_identification/phase_out/dpdochl280k/7000-8000/dpdochl280k-rawdata.xvg
+Lo---------
+DPPC:DOPC:CHOL
+0.56:0.09:0.35 
+0.01:0.01:0.01 
+Scd
+DPPC: 0.39 ± 0.06
+DOPC: 0.27 ± 0.05
+Area
+DPPC: 45.85 ± 4.38
+DOPC: 48.73 ± 4.22
+CHOL: 23.86 ± 3.41
+Ld---------
+DPPC:DOPC:CHOL
+0.18:0.56:0.26 
+0.01:0.01:0.01 
+Scd
+DPPC: 0.29 ± 0.08
+DOPC: 0.20 ± 0.08
+Area
+DPPC: 52.54 ± 6.20
+DOPC: 54.92 ± 7.44
+CHOL: 23.85 ± 3.38
+
+Scd DPPC: KL: 0.91 WD: 0.08
+Scd DOPC: KL: 0.60 WD: 0.05
+Area DPPC: KL: 0.68 WD: 5.06
+Area DOPC: KL: 0.57 WD: 0.88
+
+lo ratio: 0.44870225694444443 
+CHOL lo: 0.5260029069767442
+
+/data/gulab/yzdai/data4/atomdensity/HMM/dpdochl280k/train1-dpdochl280k-rawdata.xvg
+Lo---------
+DPPC:DOPC:CHOL
+0.57:0.08:0.35 
+0.01:0.01:0.01 
+Scd
+DPPC: 0.38 ± 0.06
+DOPC: 0.26 ± 0.06
+Area
+DPPC: 46.26 ± 4.84
+DOPC: 50.33 ± 4.66
+CHOL: 23.88 ± 3.45
+Ld---------
+DPPC:DOPC:CHOL
+0.18:0.56:0.26 
+0.01:0.00:0.01 
+Scd
+DPPC: 0.30 ± 0.08
+DOPC: 0.20 ± 0.08
+Area
+DPPC: 51.49 ± 6.33
+DOPC: 54.60 ± 7.53
+CHOL: 23.83 ± 3.34
+
+Scd DPPC: KL: 0.56 WD: 0.06
+Scd DOPC: KL: 0.36 WD: 0.02
+Area DPPC: KL: 0.40 WD: 3.29
+Area DOPC: KL: 0.33 WD: nan
+
+CHOL Lo: 0.5174418604651162 CHOL Ld: 0.4825581395348838
+0.4435763888888889
+
+/data/gulab/yzdai/data4/phase_identification/phase_out/dpdochl290k/8000-9000/dpdochl290k-rawdata.xvg
+Lo---------
+DPPC:DOPC:CHOL
+0.54:0.09:0.37 
+0.01:0.01:0.01 
+Scd
+DPPC: 0.36 ± 0.06
+DOPC: 0.26 ± 0.06
+Area
+DPPC: 48.09 ± 4.72
+DOPC: 50.50 ± 4.62
+CHOL: 25.05 ± 3.62
+Ld---------
+DPPC:DOPC:CHOL
+0.22:0.53:0.25 
+0.01:0.01:0.01 
+Scd
+DPPC: 0.27 ± 0.08
+DOPC: 0.19 ± 0.07
+Area
+DPPC: 53.96 ± 6.50
+DOPC: 55.84 ± 7.34
+CHOL: 25.08 ± 3.61
+
+Scd DPPC: KL: 0.63 WD: 0.07
+Scd DOPC: KL: 0.49 WD: 0.05
+Area DPPC: KL: 0.49 WD: 3.80
+Area DOPC: KL: 0.43 WD: nan
+
+lo ratio: 0.4123046875 
+CHOL lo: 0.5090116279069767
+
+
+/data/gulab/yzdai/data4/atomdensity/HMM/dpdochl290k/train1-dpdochl290k-rawdata.xvg
+Lo---------
+DPPC:DOPC:CHOL
+0.55:0.10:0.35 
+0.01:0.01:0.01 
+Scd
+DPPC: 0.34 ± 0.07
+DOPC: 0.24 ± 0.06
+Area
+DPPC: 48.90 ± 5.30
+DOPC: 52.17 ± 5.65
+CHOL: 25.07 ± 3.59
+Ld---------
+DPPC:DOPC:CHOL
+0.18:0.57:0.25 
+0.01:0.01:0.01 
+Scd
+DPPC: 0.27 ± 0.08
+DOPC: 0.19 ± 0.08
+Area
+DPPC: 53.76 ± 6.75
+DOPC: 55.75 ± 7.39
+CHOL: 25.06 ± 3.65
+
+Scd DPPC: KL: 0.42 WD: 0.05
+Scd DOPC: KL: 0.23 WD: 0.03
+Area DPPC: KL: 0.31 WD: 2.46
+Area DOPC: KL: 0.18 WD: nan
+
+CHOL Lo: 0.5436046511627908 CHOL Ld: 0.4563953488372092
+lo/all: 0.4644097222222222
+
+/data/gulab/yzdai/data4/phase_identification/phase_out/dpdo280k/9000-10000/dpdo280k-rawdata.xvg
+Lo---------
+DPPC:DOPC
+0.91:0.09 
+0.01:0.01 
+Scd
+DPPC: 0.40 ± 0.06
+DOPC: 0.29 ± 0.06
+Area
+DPPC: 42.46 ± 5.31
+DOPC: 45.04 ± 6.07
+Ld---------
+DPPC:DOPC
+0.32:0.68 
+0.01:0.01 
+Scd
+DPPC: 0.22 ± 0.12
+DOPC: 0.11 ± 0.09
+Area
+DPPC: 63.61 ± 16.34
+DOPC: 67.72 ± 15.71
+
+Scd DPPC: KL: 1.54 WD: 0.15
+Scd DOPC: KL: 2.09 WD: 0.17
+Area DPPC: KL: 1.51 WD: 14.45
+Area DOPC: KL: 1.57 WD: 17.45
+
+lo ratio: 0.47399739583333333
+
+/data/gulab/yzdai/data4/atomdensity/HMM/dpdo280k/train5-dpdo280k-rawdata.xvg
+Lo---------
+DPPC:DOPC
+0.90:0.10 
+0.00:0.00 
+Scd
+DPPC: 0.39 ± 0.07
+DOPC: 0.27 ± 0.08
+Area
+DPPC: 44.73 ± 10.62
+DOPC: 48.91 ± 10.49
+Ld---------
+DPPC:DOPC
+0.26:0.74 
+0.00:0.00 
+Scd
+DPPC: 0.20 ± 0.12
+DOPC: 0.11 ± 0.09
+Area
+DPPC: 62.61 ± 14.65
+DOPC: 67.77 ± 15.86
+
+Scd DPPC: KL: 1.48 WD: 0.17
+Scd DOPC: KL: 1.53 WD: 0.15
+Area DPPC: KL: 0.83 WD: 14.76
+Area DOPC: KL: 0.84 WD: 14.63
+0.5260416666666666
+
+
+/data/gulab/yzdai/data4/phase_identification/phase_out/dpdo290k/9000-10000/dpdo290k-rawdata.xvg
+Lo---------
+DPPC:DOPC
+0.95:0.05 
+0.01:0.01 
+Scd
+DPPC: 0.39 ± 0.06
+DOPC: 0.28 ± 0.07
+Area
+DPPC: 42.83 ± 5.01
+DOPC: 45.75 ± 5.71
+Ld---------
+DPPC:DOPC
+0.45:0.55 
+0.01:0.01 
+Scd
+DPPC: 0.18 ± 0.10
+DOPC: 0.11 ± 0.08
+Area
+DPPC: 62.17 ± 12.23
+DOPC: 66.46 ± 12.97
+
+Scd DPPC: KL: 2.38 WD: 0.20
+Scd DOPC: KL: 2.13 WD: 0.16
+Area DPPC: KL: 1.73 WD: 15.79
+Area DOPC: KL: 1.69 WD: 17.12
+
+lo ratio: 0.3037109375
+
+/data/gulab/yzdai/data4/atomdensity/HMM/dpdo290k/train0-dpdo290k-rawdata.xvg
+Lo---------
+DPPC:DOPC
+0.93:0.07 
+0.01:0.01 
+Scd
+DPPC: 0.35 ± 0.10
+DOPC: 0.21 ± 0.10
+Area
+DPPC: 45.60 ± 8.81
+DOPC: 52.62 ± 11.37
+Ld---------
+DPPC:DOPC
+0.40:0.60 
+0.01:0.01 
+Scd
+DPPC: 0.17 ± 0.10
+DOPC: 0.11 ± 0.08
+Area
+DPPC: 63.14 ± 12.34
+DOPC: 66.62 ± 12.99
+
+Scd DPPC: KL: 1.69 WD: 0.19
+Scd DOPC: KL: 0.89 WD: 0.12
+Area DPPC: KL: 1.10 WD: 15.26
+Area DOPC: KL: 0.60 WD: 12.52
+0.3993055555555556
+
+m2 dppc scd: 0.031701700235421626
+m2 dppc area: 0.013136751043813066
+m2 dopc scd: 0.0078125
+m2 dopc area: 0.012142010133916137
+m3 dppc scd: 0.062313945133380844
+m3 dppc area: 0.0953177901373502
+m3 dopc scd: 0.05555555555555569
+m3 dopc area: 0.044511082957220394
+
+m2 dppc scd: 0.26263573553250885
+m2 dppc area: 0.10697097906656838
+m2 dopc scd: 0.015029464343616517
+m2 dopc area: 0.05382515262467802
+m3 dppc scd: 0.03125000000000011
+m3 dppc area: 0.024154988114689968
+m3 dopc scd: 0.010204081632653073
+m3 dopc area: 0.004589876223251577
+
+####HMM
+Lo
+m2 dppc scd: 0.1816749439387325
+m2 dppc area: 0.044577212749028705
+m2 dopc scd: 0.22314355131420993
+m2 dopc area: 0.05938930416301291
+m3 dppc scd: 0.18476292472521727
+m3 dppc area: 0.1669563269106462
+m3 dopc scd: 0.05555555555555569
+m3 dopc area: 0.08579852759484174
+Ld
+m2 dppc scd: 0.11767844320604526
+m2 dppc area: 0.10973425145974613
+m2 dopc scd: 0.015029464343616517
+m2 dopc area: 0.04663179418100283
+m3 dppc scd: 0.03124999999999989
+m3 dppc area: 0.026026849347587033
+m3 dopc scd: 0.029733913497926423
+m3 dopc area: 0.008039911309952408
+
+###density
+Lo
+m2 dppc scd: 0.01388888888888895
+m2 dppc area: 0.006244221675030248
+m2 dopc scd: 0.031701700235421404
+m2 dopc area: 0.011625806998583954
+m3 dppc scd: 0.12500000000000022
+m3 dppc area: 0.11793193674315139
+m3 dopc scd: 0.043432667905065836
+m3 dopc area: 0.08111681922634617
+Ld
+m2 dppc scd: 0.08267844320604523
+m2 dppc area: 0.0340453258722464
+m2 dopc scd: 0.015029464343616517
+m2 dopc area: 0.0496446083924863
+m3 dppc scd: 0.07031249999999989
+m3 dppc area: 0.06050344842657018
+m3 dopc scd: 0.0078125
+m3 dopc area: 0.012464782740175151
