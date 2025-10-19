@@ -1,2 +1,13 @@
-*.png
+**/phaseplot/
 *.avi
+*.err
+*.out
+*plot_voronoi.ipynb
+*draft_phase_identification.ipynb
+*phase_identification_pure_phospholipid_copy.ipynb
+*phase_identification_pure_phospholipid_new.ipynb
+# 忽略 data 目录及其所有子目录下的文件
+md_data/**
+# 但保留所有目录本身（包括 data/ 和它的所有子目录）
+!md_data/**/
+!md_data/**/README.txt

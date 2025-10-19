@@ -10,9 +10,9 @@
 
 source /data/gulab/yzdai/anaconda3/bin/activate density
 SCRIPT1="/data/gulab/yzdai/data4/phase_identification/scripts_for_phase_identification/phase_identification_pure_phospholipid.py"
-SCRIPT2="/data/gulab/yzdai/data4/atomdensity/scripts/plot_phase.py"
-SCRIPT3="/data/gulab/yzdai/data4/atomdensity/scripts/plot_voronoi.py"
-SCRIPT4="/data/gulab/yzdai/data4/atomdensity/scripts/plot_voronoi_binary.py"
+SCRIPT2="/data/gulab/yzdai/data4/phase_identification/plot/scripts/plot_phase.py"
+SCRIPT3="/data/gulab/yzdai/data4/phase_identification/plot/scripts/plot_voronoi_with_chol.py"
+SCRIPT4="/data/gulab/yzdai/data4/phase_identification/plot/scripts/plot_voronoi_binary.py"
 
 N_GAP='5'
 BIN_WIDTH='3'
@@ -44,7 +44,7 @@ LEAFLET='/data/gulab/yzdai/data4/phase_identification/leaflet/dpdochl290k-leafle
 # LEAFLET='/data/gulab/yzdai/data4/phase_identification/leaflet/dpdochl280k-leaflet.xvg'
 
 param="/data/gulab/yzdai/data4/phase_identification/phase_out/$SYS/parameters.json"
-all_dppc_id=($(seq 1 202) $(seq 577 778))       #dpdochl
+all_dppc_id=($(seq 1 202) $(seq 577 778))
 
 # #-----------------------psm-------------------------------------------
 # SYS='psmdopochl'
@@ -53,50 +53,51 @@ all_dppc_id=($(seq 1 202) $(seq 577 778))       #dpdochl
 # LEAFLET='/data/gulab/yzdai/data4/phase_identification/leaflet/psmdopochl300k-0.8-0-20us-leaflet.xvg'
 
 # param='/data/gulab/yzdai/data4/phase_identification/phase_out/psmdopochl/parameters.json'
-# all_dppc_id=($(seq 1 90) $(seq 91 180))       #psmdopochl
+# all_dppc_id=($(seq 1 90) $(seq 91 180))   
 
 
 all_dppc_id_str=$(IFS=,; echo "${all_dppc_id[*]}")
 
-# 总帧数和每次处理的帧数
 # TOTAL_FRAMES=20000                  #psmdopochl
 # TOTAL_FRAMES=10000                #dpdo
 # TOTAL_FRAMES=8000                #dpdochl280k
 TOTAL_FRAMES=9000                #dpdochl290k
 
 STEP=1000
-# 输出目录前缀
+
 BASE_OUTPATH="/data/gulab/yzdai/data4/phase_identification/phase_out/${SYS}/"
 mkdir -p "$BASE_OUTPATH"
-# 循环处理每个区间
+
 # for ((START=9000; START<TOTAL_FRAMES; START+=STEP)); do
 for ((START=0; START<TOTAL_FRAMES; START+=STEP)); do
     END=$(( (START + STEP < TOTAL_FRAMES) ? (START + STEP) : TOTAL_FRAMES ))
     OUTPATH="${BASE_OUTPATH}${START}-${END}/"
     echo "Processing frames ${START} to ${END}..."
-    mkdir -p "$OUTPATH"  # 创建输出目录
-    # # 运行 Python 脚本
+    mkdir -p "$OUTPATH"  
+
     # python $SCRIPT1 -trj $TRJ -pdb $PDB -start $START -end $END \
     #         -bin_width $BIN_WIDTH -n_gap $N_GAP \
     #         -leaflet $LEAFLET -sys $SYS -cal_ratio $CAL_RATIO -outpath $OUTPATH \
     #         -primary_lipid "$all_dppc_id_str" \
     #         -param $param
-    # mkdir -p "$OUTPATH/phaseplot/upper"  # 创建输出目录
-    # # mkdir -p "$OUTPATH/phaseplot/lower"  # 创建输出目录
-    # mkdir -p "$OUTPATH/phaseplot/regi"  # 创建输出目录
 
-    # # 运行 Python 脚本
+    # mkdir -p "$OUTPATH/phaseplot/upper" 
+    # # mkdir -p "$OUTPATH/phaseplot/lower" 
+    # mkdir -p "$OUTPATH/phaseplot/regi" 
+
+    ### Plot Phase Map
     # python $SCRIPT2 -trj $TRJ -pdb $PDB -b $START -e $END \
     #     -bin_width 2 -inte 5 \
     #     -phasepath $OUTPATH -sys $SYS
 
+    ### Plot Vopronoi for the last 1 us
     # # if [ "$START" -eq 19000 ]; then    #psm
     # if [ "$START" -eq 9000 ]; then       #dpdo
     if [ "$START" -eq 8000 ]; then     #dpdochl290k
     # # if [ "$START" -eq 7000 ]; then     #dpdochl280k
         phasepath="${OUTPATH}${SYS}-rawdata.xvg"
         voronoi_out="$OUTPATH/phaseplot/voronoi/"
-        mkdir -p "$OUTPATH/phaseplot/voronoi"  # 创建输出目录
+        mkdir -p "$OUTPATH/phaseplot/voronoi"  
     #     ################################################dpdo#######################################
     #     # HMMphasepath='/data/gulab/yzdai/data4/atomdensity/HMM/dpdo280k/train5-dpdo280k-rawdata.xvg'
     #     HMMphasepath='/data/gulab/yzdai/data4/atomdensity/HMM/dpdo290k/train0-dpdo290k-rawdata.xvg'
@@ -112,7 +113,7 @@ for ((START=0; START<TOTAL_FRAMES; START+=STEP)); do
         HMMphasepath='/data/gulab/yzdai/data4/atomdensity/HMM/dpdochl290k/train1-dpdochl290k-rawdata.xvg'
         # HMMphasepath='/data/gulab/yzdai/data4/atomdensity/HMM/all_train/psmdopochl/train7-psmdopochl300k-rawdata.xvg'
 
-        mkdir -p "$OUTPATH/phaseplot/voronoi"  # 创建输出目录
+        mkdir -p "$OUTPATH/phaseplot/voronoi"  
         python $SCRIPT3 -trj $TRJ -pdb $PDB -start $START -end $END \
             -n_gap $N_GAP \
             -leaflet $LEAFLET -sys $SYS \
