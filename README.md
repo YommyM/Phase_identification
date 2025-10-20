@@ -17,7 +17,7 @@ In this work, we developed an **unsupervised method** to recognize coexisting ph
 
 Our method:
 - Maps bilayer properties (atomic density) to **pixels** on the membrane plane.  
-- Uses a **uniform strategy** to define the threshold \( \theta^\* \) for discriminating between the two phases (rather than assuming a fixed global threshold); 
+- Uses a **uniform strategy** to define the threshold θ\* for discriminating between the two phases (rather than assuming a fixed global threshold); 
 - Maps pixel phase states back to **lipids**.  
 
 This strategy is **independent of bilayer composition and temperature**, avoiding system-specific artifacts.  
@@ -47,6 +47,7 @@ Phase_identification/
 │
 ├── requirements.txt                                      # Python dependencies
 └── README.md
+```
 
 ---
 
