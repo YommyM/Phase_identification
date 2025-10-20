@@ -5,7 +5,6 @@ import numpy as np
 import argparse
 import matplotlib
 import matplotlib.pyplot as plt
-from scipy.spatial import Voronoi
 from collections import Counter
 parser = argparse.ArgumentParser()
 parser.add_argument('-trj', type = str, help='name of trajectory')
