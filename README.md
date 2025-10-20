@@ -5,7 +5,7 @@ This repository contains the scripts, data, and workflows used in our study
 
 ---
 
-## Method Overview
+## 🧠 Overview
 
 <p align="center">
   <img src="./plot/method.png" alt="Method Overview" width="600">
@@ -25,31 +25,33 @@ The method shows improved **accuracy and robustness** compared to other methods 
 
 ---
 
-## Repository Structure
+## 📁 Repository Structure
 
+```text
 Phase_identification/
 │
 ├── scripts_for_phase_identification/
-│ ├── phase_identification_pure_phospholipid.ipynb # Phase recognition for pure lipid bilayers
-│ ├── phase_identification_with_protein.ipynb # Phase recognition for protein-containing bilayers
-│ ├── run_pure_phospholipid.sh # Shell script for full-trajectory phase identification (pure lipids)
-│ └── phase_identification_pure_phospholipid.py # Core implementation for pure lipid system
+│   ├── phase_identification_pure_phospholipid.ipynb      # Phase recognition for pure lipid bilayers
+│   ├── phase_identification_with_protein.ipynb           # Phase recognition for protein-containing bilayers
+│   ├── run_pure_phospholipid.sh                          # Shell script for full-trajectory phase identification (pure lipids)
+│   └── phase_identification_pure_phospholipid.py         # Core implementation for pure lipid system
+│   └── ...
 │
-├── analysis/ # Analysis helpers
-│ ├── apl_calculation.py # Area-per-lipid (APL) calculations
-│ └── statistics.py # Data statistics & postprocessing
+├── analysis/
+│   └── summary.ipynb                                     # Data statistics & postprocessing
+│   └── ...                                               # Area-per-lipid (APL) calculations
 │
 ├── plot/
-│ ├── method.png # Method illustration for README (recommended)
-│ ├── method.pdf # High-resolution figure for publication
-│ └── scripts/ # Plotting scripts used in the paper
+│   └── scripts/                                          # Plotting scripts used in the paper
+│   └── ...
 │
-├── requirements.txt # Python dependencies
+├── requirements.txt                                      # Python dependencies
 └── README.md
+```
+
 ---
 
-
-## Environment Setup
+## ⚙️ Environment Setup
 
 Clone the repository and install dependencies:
 
