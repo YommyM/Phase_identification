@@ -47,7 +47,6 @@ Phase_identification/
 │
 ├── requirements.txt                                      # Python dependencies
 └── README.md
-```
 
 ---
 
