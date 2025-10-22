@@ -13,3 +13,4 @@ md_data/**
 # 但保留所有目录本身（包括 data/ 和它的所有子目录）
 !md_data/**/
 !md_data/**/README.txt
+*membrane_utils.py
