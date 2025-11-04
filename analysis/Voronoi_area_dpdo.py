@@ -4,7 +4,6 @@ import numpy as np
 import argparse
 import matplotlib.pyplot as plt
 from collections import Counter
-#考虑周期性边界条件的Voronoi tessellation
 parser = argparse.ArgumentParser()
 parser.add_argument('-trj', type = str, help='name of trajectory')
 parser.add_argument('-pdb', type = str, help = 'file name of system structure, e.g., pdb, gro, psf, etc...')
@@ -20,8 +19,7 @@ b = args.b
 e = args.e
 interval = args.interval
 out_fn = args.out
-# 一些函数###########################################################################################################################
-# 函数get_atom分别获得磷脂的两条疏水链的原子
+
 def get_sn(sel_lip, sel_lip_type):
     sel_atom =[]
     for i in range(len(sel_lip)):
@@ -72,26 +70,19 @@ def getPolygonArea(points):
 
     return abs(0.5 * area)
 def calculate_lipid_Voronoi_area(points):
-    # 计算 Voronoi 分割
     vor = Voronoi(points)
-    #按照 points 的顺序对 vor.regions 进行排序
     sorted_regions = [vor.regions[vor.point_region[i]] for i in range(len(points))]
-    # 计算每个 Voronoi 区域的面积
     areas = []
     boundary_points = []
     for region in sorted_regions:
         if -1 in region or len(region) == 0:
-            # 跳过无效的区域
             areas.append(0)
             boundary_points.append(list(points[i]))
             continue
-        # 获取区域的顶点坐标
         vertices = vor.vertices[region]
-        # 计算区域的凸包
         area=getPolygonArea(vertices)
         # print('area',area)
         areas.append(area)
-    # 检查
     if (len(areas) == len(points)):
         print('                     V_AREAS NUM CORRECT')
     else:
@@ -100,13 +91,10 @@ def calculate_lipid_Voronoi_area(points):
     return areas, vor, sorted_regions, boundary_points
 def plot_Voronoi(vor, sorted_regions, points, n_count, box, phase, title_str): #n_count = lip_num*2 + chol_num in one leaflet
     fig, ax = plt.subplots(figsize=(4, 4), dpi=180)
-    # 多边形的画图部分
     for i in range(len(sorted_regions)):
         region = sorted_regions[i]
         if -1 in region or len(region) == 0:
-            # 跳过无效的区域
             continue
-        # 获取区域的顶点坐标
         vertices = vor.vertices[region]
         if(i < len(phase)):
             if(phase[i] == 1):
@@ -114,41 +102,34 @@ def plot_Voronoi(vor, sorted_regions, points, n_count, box, phase, title_str): #
             elif(phase[i] == 0):
                 ax.fill(*zip(*vertices), alpha=0.2, color='red')
         else:
-            ax.fill(*zip(*vertices), alpha=0.1, color='grey')        #PBC 多边形 
+            ax.fill(*zip(*vertices), alpha=0.1, color='grey')        #PBC 
 
         # if(i<202*2):
         # # if(i<202*2 and i%2==0):
-        #     ax.fill(*zip(*vertices), alpha=0.2, color='blue')          #DPPC 多边形
+        #     ax.fill(*zip(*vertices), alpha=0.2, color='blue')          #DPPC
         # elif(i<404*2):
         # # elif(i<404*2 and i%2==0):
         #     #2个多边形融合
-        #     ax.fill(*zip(*vertices), alpha=0.2, color='red')           #DOPC 多边形
+        #     ax.fill(*zip(*vertices), alpha=0.2, color='red')           #DOPC 
         # elif(i<n_count):
-        #     ax.fill(*zip(*vertices), alpha=0.2, color='orange')        #CHOL 多边形 
+        #     ax.fill(*zip(*vertices), alpha=0.2, color='orange')        #CHOL 
         # else:
-        #     ax.fill(*zip(*vertices), alpha=0.1, color='grey')        #PBC 多边形 
+        #     ax.fill(*zip(*vertices), alpha=0.1, color='grey')        #PBC 
             # break
 
-    # 点的画图部分
-    ax.plot(points[:404, 0], points[:404, 1], 'b.', markersize='2')               # DPPC 2疏水链脂心
-    ax.plot(points[404:808, 0], points[404:808, 1], 'r.', markersize='2')     # DOPC 2疏水链脂心
+    ax.plot(points[:404, 0], points[:404, 1], 'b.', markersize='2')               # DPPC 2
+    ax.plot(points[404:808, 0], points[404:808, 1], 'r.', markersize='2')     # DOPC 2
     ax.plot(points[808:n_count, 0], points[808:n_count, 1], 'y.', markersize='2') # chol O3        
     ax.plot(points[n_count:, 0], points[n_count:, 1], 'k.', markersize='2')            # PBC fake points
-    # box画图部分                                        
-    # 创建一个正方形的顶点坐标
+
     square = plt.Rectangle((0, 0), box[0], box[1], fill=False)
-    # 将正方形添加到坐标轴上
     ax.add_patch(square)
-    # 隐藏原始的坐标轴
     ax.axis('off')
-    # 标记刻度和数字（仅显示左下两边的刻度和数字）
     for i in range(0, 161, 20):
-        # 左侧刻度及数字
-        plt.plot([-2, 0], [i, i], color='black')  # 刻度线
-        plt.text(-3, i, str(i), ha='right', va='center')  # 数字标签
-        # 下方刻度及数字
-        plt.plot([i, i], [-2, 0], color='black')  # 刻度线
-        plt.text(i, -3, str(i), ha='center', va='top')  # 数字标签
+        plt.plot([-2, 0], [i, i], color='black')  
+        plt.text(-3, i, str(i), ha='right', va='center')  
+        plt.plot([i, i], [-2, 0], color='black') 
+        plt.text(i, -3, str(i), ha='center', va='top')  
     
     x_min = 0-0.1*box[0]
     x_max = 1.1*box[0]
@@ -159,56 +140,48 @@ def plot_Voronoi(vor, sorted_regions, points, n_count, box, phase, title_str): #
     plt.title(title_str, fontsize= 10)
     plt.gca().set_aspect('equal')
     plt.show()       
-def simulate_PBC(points_leaflet, box):  # 改成 points leaflet判断并移动
+def simulate_PBC(points_leaflet, box): 
     PBC_points = []
     x_min = 0-0.1*box[0]
     x_max = 1.1*box[0]
     y_min = 0-0.1*box[1]
     y_max = 1.1*box[1]
     for i in range(len(points_leaflet)):
-        # 左移 
         if(points_leaflet[i, 0] > box[0]*0.9):
             x = points_leaflet[i, 0] - box[0]
             y = points_leaflet[i, 1]
             if(x > x_min and x < x_max and y > y_min and y < y_max):
                 PBC_points.append([x, y])
-        # 右移 
         if(points_leaflet[i, 0] < box[0]*0.1):
             x = points_leaflet[i, 0] + box[0]
             y = points_leaflet[i, 1]
             if(x > x_min and x < x_max and y > y_min and y < y_max):
                 PBC_points.append([x, y])
-        # 上移 
         if(points_leaflet[i, 1] < box[1]*0.1):
             x = points_leaflet[i, 0]
             y = points_leaflet[i, 1] + box[1]
             if(x > x_min and x < x_max and y > y_min and y < y_max):
-                PBC_points.append([x, y])            
-        # 下移 
+                PBC_points.append([x, y])       
         if(points_leaflet[i, 1] > box[1]*0.9):
             x = points_leaflet[i, 0]
             y = points_leaflet[i, 1] - box[1]
             if(x > x_min and x < x_max and y > y_min and y < y_max):
-                PBC_points.append([x, y])            
-        # 左上移  
+                PBC_points.append([x, y])     
         if(points_leaflet[i, 0] > box[0]*0.9 and points_leaflet[i, 1] < box[1]*0.1):
             x = points_leaflet[i, 0] - box[0]
             y = points_leaflet[i, 1] + box[1]
             if(x > x_min and x < x_max and y > y_min and y < y_max):
-                PBC_points.append([x, y])            
-        # 左下移
+                PBC_points.append([x, y])      
         if(points_leaflet[i, 0] > box[0]*0.9 and points_leaflet[i, 1] > box[1]*0.9):
             x = points_leaflet[i, 0] - box[0]
             y = points_leaflet[i, 1] - box[1]
             if(x > x_min and x < x_max and y > y_min and y < y_max):
-                PBC_points.append([x, y])            
-        # 右上移
+                PBC_points.append([x, y])         
         if(points_leaflet[i, 0] < box[0]*0.1 and points_leaflet[i, 1] < box[1]*0.1):
             x = points_leaflet[i, 0] + box[0]
             y = points_leaflet[i, 1] + box[1]
             if(x > x_min and x < x_max and y > y_min and y < y_max):
-                PBC_points.append([x, y])           
-        # 右下移
+                PBC_points.append([x, y])        
         if(points_leaflet[i, 0] < box[0]*0.1 and points_leaflet[i, 1] > box[1]*0.9):
             x = points_leaflet[i, 0] + box[0]
             y = points_leaflet[i, 1] - box[1]
@@ -216,9 +189,7 @@ def simulate_PBC(points_leaflet, box):  # 改成 points leaflet判断并移动
                 PBC_points.append([x, y])           
     PBC_points = np.array(PBC_points)
     return PBC_points
-# 这里开始定义一个大函数，输入是每个片层选择的所有原子 包括chol
 def leaflet_Vor(sel_atom_leaflet, count_leaflet_lip, box):
-    # 获得所有Voronoi点的坐标
     points_leaflet = []
     for i in range(0, len(sel_atom_leaflet)):
         # print(sel_atom_leaflet[i])
@@ -227,19 +198,16 @@ def leaflet_Vor(sel_atom_leaflet, count_leaflet_lip, box):
         # points_leaflet.append([point[0], point[1]]) 
         points_leaflet.append(list(point[0:2]))
     points_leaflet = np.array(points_leaflet)
-    # 记有效点数为 n_count == lip_num*2 + chol_num
+    # n_count == lip_num*2 + chol_num
     n_count = len(points_leaflet)
 
-    # 对边界点进行8次处理
     PBC_points = simulate_PBC(points_leaflet, box)
-    # 获得 points_with_PBC
-    points_with_PBC = np.array(list(points_leaflet) + list(PBC_points))  # 直接在这里调函数simulate pbc
+    points_with_PBC = np.array(list(points_leaflet) + list(PBC_points))
 
     print('PBC_points:\t' + str(len(PBC_points)) + '\tpoints_with_PBC:\t' + str(len(points_with_PBC)))
-    # 对points_with_PBC进行Voronio tessellation 
     areas, vor, sorted_regions, _boundary_points = calculate_lipid_Voronoi_area(points_with_PBC)
 
-    areas = areas[:n_count] #这里是每个非PBC点的面积，接下来我们要获得每个脂质的面积
+    areas = areas[:n_count] 
     # chol_area = areas[-count_leaflet_lip*2:]
     lip_area = []
     for i in range(0,count_leaflet_lip*2,2):
@@ -251,11 +219,9 @@ def leaflet_Vor(sel_atom_leaflet, count_leaflet_lip, box):
             lip_area.append(tmp)
     print('lip_area:\t' + str(len(lip_area)))
     return lip_area, vor, sorted_regions, points_with_PBC
-#识别共享边，确定相边界顶点，相边界索引
 def share_boundary(vor,sorted_regions,tail_phase):
     i=0
     boundary_index=[]
-    #选定一个区域作为中心区域
     m=0 
     # boundary_vertices=np.zeros((1,2))
     for i in range ( len(sorted_regions)):
@@ -263,24 +229,20 @@ def share_boundary(vor,sorted_regions,tail_phase):
         region_adjacent=[]
         region_adjacent_index=[]
         j=0
-        #确定中心区域旁的相邻区域
         for tmp in sorted_regions:
-            if len( list(set(region) & set(tmp)))>=2 and len( list(set(region) & set(tmp)))<len(region): #确定相邻区域，不包含中心区域
+            if len( list(set(region) & set(tmp)))>=2 and len( list(set(region) & set(tmp)))<len(region):
                 share_vertices =  list(set(region) & set(tmp))
                 region_adjacent.append(tmp)       
-                region_adjacent_index.append(j)   #确定相邻区域的索引，不包含中心区域 
+                region_adjacent_index.append(j)  
             j+=1
-        #确定边界相区域1
         # share_vertices_num=0
         # for l in range(len(region_adjacent_index)):
         #     if len( list(set(region_adjacent[l]) & set(sorted_regions[i])))>0:
         #         # print( list(set(region_adjacent[l]) & set(sorted_regions[i])))
         #         share_vertices_num+=1
-        #     if tail_phase[region_adjacent_index[l]]!=tail_phase[i] and share_vertices_num<3: #确定相邻区域与中心区域相态是否相同，若不同则中心区域为边界相区域
-        #                                     #由于遍历所有区域，因此只需要判断中心区域是否为边界相区域，从而可得所有边界相区域
+        #     if tail_phase[region_adjacent_index[l]]!=tail_phase[i] and share_vertices_num<3:
         #         boundary_index.append(i) 
         #         break
-        #确定边界相区域2
         phase0_num=0
         phase1_num=0
         b_mol_if='no'
@@ -295,23 +257,21 @@ def share_boundary(vor,sorted_regions,tail_phase):
                 b_mol_if='yes'
                 break
         if b_mol_if=='yes' and not \
-        (phase0_num>len(region_adjacent_index)-2 or  phase1_num>len(region_adjacent_index)-2): #确定相邻区域与中心区域相态是否相同，若不同则中心区域为边界相区域
-                                            #由于遍历所有区域，因此只需要判断中心区域是否为边界相区域，从而可得所有边界相区域
-            boundary_index.append(i)           
-        #确定边界点
+        (phase0_num>len(region_adjacent_index)-2 or  phase1_num>len(region_adjacent_index)-2):
+            boundary_index.append(i)        
         for k in region_adjacent_index:
             if tail_phase[k]!=tail_phase[i]:                     
-                vertices_around =vor.vertices[sorted_regions[k]] #确定相邻区域的顶点
-                vertices_center =vor.vertices[sorted_regions[i]] #确定中心区域的顶点
+                vertices_around =vor.vertices[sorted_regions[k]] 
+                vertices_center =vor.vertices[sorted_regions[i]]
                 # print(vor.vertices[sorted_regions[k]])
                 # print(vor.vertices[sorted_regions[i]])
-                for tmp_c in vertices_center:                    #确定与中心区域相同的顶点，即边界点
+                for tmp_c in vertices_center:                  
                     for tmp_a in vertices_around:
                         if tmp_c[0]==tmp_a[0] and tmp_c[1]==tmp_a[1]:
                             if m==0:
                                 boundary_vertices=tmp_c                                   
                                 m+=1
-                            else: boundary_vertices=np.concatenate((boundary_vertices,tmp_c)) #将所有边界点结合到一起,相邻两个为共享边
+                            else: boundary_vertices=np.concatenate((boundary_vertices,tmp_c)) 
                 
     boundary_vertices=boundary_vertices.reshape(int(len(boundary_vertices)/2),2)
 
@@ -321,7 +281,6 @@ def area_phase(sorted_regions,tail_phase,boundary_vertices,areas_all):
     area_phase0=[]
     area_phase1=[]
     boundary_index=[]
-    #确定区域相态
     for i in range ( len(sorted_regions)):
         j=0
         if tail_phase[i]==0:
@@ -341,14 +300,14 @@ def area_phase(sorted_regions,tail_phase,boundary_vertices,areas_all):
     R_0=area_phase0_sum/length_sum
     return np.sum(areas_all),area_phase0_sum,area_phase1_sum,length_sum,R_0
 # MAIN###########################################################################################################################
-# 获得单片层lip type without CHOL
+# lip type without CHOL
 sel_lip_type_upper = ['DPPC' for x in range(346)] + ['DOPC' for x in range(230)] 
 sel_lip_type_lower = ['DPPC' for x in range(346)] + ['DOPC' for x in range(230)] 
-# 获得上片层磷脂的resid
+# upper resid
 sel_lip_upper = list(range(1,577)) 
 for i in range(0,len(sel_lip_upper)):
     sel_lip_upper[i] = 'resid '+str(sel_lip_upper[i])
-# 获得下片层磷脂的resid
+# lower resid
 sel_lip_lower = list(range(577,1153))
 for i in range(0,len(sel_lip_lower)):
     sel_lip_lower[i] = 'resid '+str(sel_lip_lower[i])
@@ -356,11 +315,10 @@ for i in range(0,len(sel_lip_lower)):
 u = MDAnalysis.Universe(pdb, trj)
 area_all_list=[]
 for ts in u.trajectory[b:e:interval]:
-    # 取上下片层磷脂疏水链原子
     sel_atom_upper = get_sn(sel_lip_upper, sel_lip_type_upper)
     sel_atom_lower = get_sn(sel_lip_lower, sel_lip_type_lower)
 
-    count_leaflet_lip = 576  # 不同体系需要改
+    count_leaflet_lip = 576  
     box = ts.dimensions[:3]
 
     n_count_up =  count_leaflet_lip*2
@@ -378,7 +336,6 @@ for ts in u.trajectory[b:e:interval]:
     # plot_Voronoi(vor_up, sorted_regions_up, points_all_up, n_count_up, box, HMM_phase_of_points_up, title_str = 'HMM phase of dpdochl280K upper')
     # plot_Voronoi(vor_low, sorted_regions_low, points_all_low, n_count_low, box, HMM_phase_of_points_low, title_str = 'HMM phase of dpdochl280K lower')
 
-    # 创建一个dict, key是chol的resid, value是chol的area
     lip_area_up = dict(zip(list(range(1,577)), lip_area_up))
     lip_area_low = dict(zip(list(range(577,1153)), lip_area_low))
     area_all = {**lip_area_up, **lip_area_low}

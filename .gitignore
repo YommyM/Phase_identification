@@ -8,9 +8,25 @@
 *phase_identification_pure_phospholipid_copy.ipynb
 *phase_identification_pure_phospholipid_new.ipynb
 *phase_identification_pure_phospholipid_final_bake.ipynb
-# 忽略 data 目录及其所有子目录下的文件
-md_data/**
-# 但保留所有目录本身（包括 data/ 和它的所有子目录）
-!md_data/**/
-!md_data/**/README.txt
+# 忽略轨迹
+*1j4n-dpdo280k-0-10us-c.xtc
+*complex_sort.gro
+*1j4n-dpdochl280k-0-10us-c.xtc
+*traj-dpdo280k-0-10us-pbc.xtc
+*traj-dpdo290k-0-10us-pbc.xtc
+*dpdochl280k-8us-pbc.xtc
+*dpdochl290k-0-9.45us-pbc.xtc
+*trjcat-psmdopochl-rho0.8-1ns-1-22.xtc
+*match_xtc.ndx
+*dppc_dopc_280k_0us.gro
+*dppc_dopc_290k_0us.gro
+*snapshot9.99us.gro
+*dppc_dopc_chol_aa_290k_0us.gro
+*psmdopochl-rho0.8.gro
+/plot/input/area_dpdo280k
+/plot/input/threshold
+/plot/input/tmp
+# # 但保留所有目录本身（包括 data/ 和它的所有子目录）
+# !md_data/**/
+# !md_data/**/README.txt
 *membrane_utils.py

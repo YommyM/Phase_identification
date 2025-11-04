@@ -9,6 +9,7 @@
 #SBATCH -e f5A.err
 source /data/gulab/yzdai/anaconda3/bin/activate myenv
 
+#################### dpdo ##############
 SCRIPT1=/data/gulab/yzdai/data4/phase_identification/analysis/Voronoi_area_dpdo.py
 # 280K
 B="5000"
@@ -28,7 +29,7 @@ out='/data/gulab/yzdai/data4/phase_identification/plot/input/area_others/dpdo280
 
 python $SCRIPT1 -pdb $PDB -trj $TRJ -out $out -b $B -e $E -interval $INTERVAL
 
-#################### dodpchl ##############
+#################### dpdochl ##############
 
 # SCRIPT2="/data/gulab/yzdai/data4/phase_identification/analysis/Voronoi_area_dpdochl.py"
 
@@ -56,7 +57,7 @@ python $SCRIPT1 -pdb $PDB -trj $TRJ -out $out -b $B -e $E -interval $INTERVAL
 
 #################### psmdopochl ##############
 
-# SCRIPT3="/data/gulab/yzdai/data4/phase_identification/analysis/Voronoi_area_4.py"
+# SCRIPT3="/data/gulab/yzdai/data4/phase_identification/analysis/Voronoi_area_psmdopochl.py"
 
 # B="19000"
 # E="20000"
