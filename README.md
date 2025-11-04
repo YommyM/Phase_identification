@@ -31,21 +31,30 @@ The method shows improved **accuracy and robustness** compared to other methods 
 Phase_identification/
 │
 ├── scripts_for_phase_identification/
-│   ├── phase_identification_pure_phospholipid.ipynb      # Phase recognition for pure lipid bilayers
-│   ├── phase_identification_with_protein.ipynb           # Phase recognition for protein-containing bilayers
-│   ├── run_pure_phospholipid.sh                          # Shell script for full-trajectory phase identification (pure lipids)
-│   └── phase_identification_pure_phospholipid.py         # Core implementation for pure lipid system
-│   └── ...
+│   ├── phase_identification_pure_lipids.ipynb    # Phase recognition pipeline for pure lipid bilayers
+│   ├── phase_identification_with_protein.ipynb   # Phase recognition pipeline for protein-containing bilayers
+│   ├── run_pure_lipids.sh                        # Shell script for full-trajectory phase identification (pure lipids)
+│   └── phase_identification_pure_lipids.py       # Implementation of phase recognition for pure lipid system
 │
 ├── analysis/
-│   └── summary.ipynb                                     # Data statistics & postprocessing
-│   └── ...                                               # Area-per-lipid (APL) calculations
+│   └── summary.ipynb                             # Data statistics & postprocessing
+│   └── Voronoi_area_*.py                         # Area-per-lipid (APL) calculations
+│
+├── leaflet/
+│   └── *_leaflet.xvg                             # Leaflet assignment for all lipids
+│   └── README.md
+│
+├── md_data/
+│   └── ...                                       # The parameter file (.tpr), as well as the initial and final configurations for each system
+│   └── README.md
 │
 ├── plot/
-│   └── scripts/                                          # Plotting scripts used in the paper
-│   └── ...
+│   └── input/                                    # All input data used for plotting
+│   └── output/                                   # All output figures
+│   └── scripts/                                  # Plotting scripts
+│   └── README.md
 │
-├── requirements.txt                                      # Python dependencies
+├── requirements.txt                              # Python dependencies
 └── README.md
 ```
 

@@ -9,7 +9,7 @@
 #SBATCH -e v3k9.err
 
 source /data/gulab/yzdai/anaconda3/bin/activate density
-SCRIPT1="/data/gulab/yzdai/data4/phase_identification/scripts_for_phase_identification/phase_identification_pure_phospholipid.py"
+SCRIPT1="/data/gulab/yzdai/data4/phase_identification/scripts_for_phase_identification/phase_identification_pure_lipids.py"
 SCRIPT2="/data/gulab/yzdai/data4/phase_identification/plot/scripts/plot_phase.py"
 SCRIPT3="/data/gulab/yzdai/data4/phase_identification/plot/scripts/plot_voronoi_with_chol.py"
 SCRIPT4="/data/gulab/yzdai/data4/phase_identification/plot/scripts/plot_voronoi_binary.py"

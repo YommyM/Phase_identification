@@ -23,9 +23,9 @@
 *snapshot9.99us.gro
 *dppc_dopc_chol_aa_290k_0us.gro
 *psmdopochl-rho0.8.gro
-/plot/input/area_dpdo280k
-/plot/input/threshold
-/plot/input/tmp
+plot/input/area_dpdo280k
+plot/input/threshold
+plot/output/tmp
 # # 但保留所有目录本身（包括 data/ 和它的所有子目录）
 # !md_data/**/
 # !md_data/**/README.txt
