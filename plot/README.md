@@ -17,5 +17,5 @@
 |   |-- Fig4_S4:full_time
 |   |-- FigS2:bin_choice
 |   `-- threshold_tuning       # Visual Fine-Tuning
-`
+`-- scripts                    # All plotting scripts
 ```
