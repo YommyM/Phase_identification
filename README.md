@@ -26,10 +26,12 @@ We compute lipid number densities in **3D voxels** and then **project along the 
 - `0` = **Ld** (liquid-disordered)
 - `1` = **Lo** (liquid-ordered)
 
-Our method:
-- Maps bilayer properties (atomic density) to **pixels** on the membrane plane.  
-- Uses a **uniform strategy** to define the threshold θ\* for discriminating between the two phases (rather than assuming a fixed global threshold); 
-- Maps pixel phase states back to **lipids**.  
+**Advantages of our method**
+- The mapping between lipid-level properties and pixel-level properties effectively averages local fluctuations and suppresses sporadic lipids whose instantaneous phase states differ from their surroundings.
+- Uses a **uniform, system-adaptive strategy** to determine the discrimination threshold θ\* between the two phases (instead of assuming a fixed global threshold), thereby minimizing threshold-induced artifacts.
+- Maps pixel-level phase states back to **individual lipids**, enabling **single-lipid–resolution** phase assignment **continuously along the full trajectory** (i.e., frame-by-frame labels for every lipid across time).
+- Does not require any labeled dataset, providing high flexibility and portability across different membrane compositions and simulation setups.
+
 
 This strategy is **independent of bilayer composition and temperature**, avoiding system-specific artifacts.  
 The method shows improved **accuracy and robustness** compared to other methods such as **HMM**, and can characterize **dynamic phase transformations** even in the presence of **membrane proteins**.
