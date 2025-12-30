@@ -15,6 +15,17 @@ This repository contains the scripts, data, and workflows used in our study
 
 In this work, we developed an **unsupervised method** to recognize coexisting phases not only in lipid mixtures but also in **protein-containing bilayers**.  
 
+We compute lipid number densities in **3D voxels** and then **project along the membrane normal (z)** to obtain a **2D pixel density map** on the membrane plane. Pixel-level phase labels are assigned using a GMM-based threshold θ\* and then **back-mapped** to generate per-lipid phase labels.
+
+- **Voxel density (3D):** number density computed on a 3D grid.
+- **Projection:** integrate voxel densities along **z** to obtain a 2D density field.
+- **Pixel classification (2D):** classify each pixel using θ\*.
+- **Back-mapping:** assign each lipid a phase label from the pixel it belongs to.
+
+**Phase label definition**
+- `0` = **Ld** (liquid-disordered)
+- `1` = **Lo** (liquid-ordered)
+
 Our method:
 - Maps bilayer properties (atomic density) to **pixels** on the membrane plane.  
 - Uses a **uniform strategy** to define the threshold θ\* for discriminating between the two phases (rather than assuming a fixed global threshold); 
@@ -61,9 +72,27 @@ Phase_identification/
 ---
 ## 🚀 Usage: Phase Identification of Lipid Membranes
 
-This repository provides a workflow to identify lipid phases (Ld / Lo) from molecular dynamics trajectories by combining leaflet-resolved lipid densities, pixel-based spatial discretization, and Gaussian Mixture Model (GMM) classification.
+This repository provides a workflow to identify lipid phases (Ld / Lo) from molecular dynamics trajectories by combining pixel-based spatial discretization, and Gaussian Mixture Model (GMM) classification.
 
 Phase labels are assigned at the **per-lipid** level by first classifying membrane pixels and then back-mapping pixel labels to individual lipids.
+
+### Key parameters (user-configurable)
+
+The following parameters control the time window and spatial resolution. They are **user-configurable** in the notebook/scripts.
+
+#### Time window
+- `start`: starting frame index (inclusive)
+- `end`: ending frame index (exclusive)
+- `n_gap`: temporal averaging stride (default: `5`)
+  - Example: if your trajectory is saved every 1 ns, `n_gap = 5` corresponds to averaging every 5 ns.
+
+> **Default analysis** uses the **last 1 μs** of the trajectory and averages densities every **5 ns**, but this can be changed by adjusting `start`, `end`, and `n_gap`.
+
+#### Spatial binning
+- `bin_width`: pixels bin width (default: `3`)
+  - Unit: **Å** 
+
+> Tip: smaller `bin_width` gives higher spatial resolution but noisier densities.
 
 ---
 
@@ -116,8 +145,8 @@ Run the notebook:**scripts_for_phase_identification/phase_identification_pure_li
    Pixel phase labels are mapped back to individual lipids.
 
 **Phase label definition**
-- `0` → Ld (liquid-disordered) or Gel
-- `1` → Lo (liquid-ordered) or L\(\alpha\)
+- `0` → Ld (liquid-disordered)
+- `1` → Lo (liquid-ordered)
 
 **Outputs**
 - A phase label matrix of shape `n_T × n_lipids`.
