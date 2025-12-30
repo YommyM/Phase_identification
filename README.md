@@ -31,10 +31,9 @@ We compute lipid number densities in **3D voxels** and then **project along the 
 - Uses a **uniform, system-adaptive strategy** to determine the discrimination threshold θ\* between the two phases (instead of assuming a fixed global threshold), thereby minimizing threshold-induced artifacts.
 - Maps pixel-level phase states back to **individual lipids**, enabling **single-lipid–resolution** phase assignment **continuously along the full trajectory** (i.e., frame-by-frame labels for every lipid across time).
 - Does not require any labeled dataset, providing high flexibility and portability across different membrane compositions and simulation setups.
+- Shows improved **accuracy and robustness** compared to alternative approaches such as **hidden Markov model (HMM)-based** methods.
+- Can characterize **dynamic phase transformations** and remains applicable even in the presence of **membrane proteins**.
 
-
-This strategy is **independent of bilayer composition and temperature**, avoiding system-specific artifacts.  
-The method shows improved **accuracy and robustness** compared to other methods such as **HMM**, and can characterize **dynamic phase transformations** even in the presence of **membrane proteins**.
 
 ---
 
