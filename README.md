@@ -87,7 +87,7 @@ Prepare a **leaflet assignment file** for the system of interest.
 ### 2. Phase identification on the last 1 μs
 
 The recommended workflow is to first perform phase identification on the **last 1 μs** of the trajectory.  
-This step determines the optimal classification threshold \(\theta^\*\) and stores normalization parameters for later use.
+This step determines the optimal classification threshold θ\* and stores normalization parameters for later use.
 
 ---
 
@@ -106,11 +106,11 @@ Run the notebook:**scripts_for_phase_identification/phase_identification_pure_li
 3. **Normalization and GMM fitting**  
    Pixels were then defined as the two-dimensional projections of these voxels onto the membrane plane. Pixel densities are normalized and fitted using a Gaussian Mixture Model (GMM).
 
-4. **Selection of \(\theta^\*\)**  
-   Based on visualization, an optimal threshold \(\theta^\*\) is selected.
+4. **Selection of θ\***  
+   Based on visualization, an optimal threshold θ\* is selected.
 
 5. **Pixel classification**  
-   Each pixel is classified using \(\theta^\*\).
+   Each pixel is classified using θ\*.
 
 6. **Back-mapping to lipids**  
    Pixel phase labels are mapped back to individual lipids.
@@ -123,7 +123,7 @@ Run the notebook:**scripts_for_phase_identification/phase_identification_pure_li
 - A phase label matrix of shape `n_T × n_lipids`.
 - A `parameters.json` file storing:
   - mean pixel densities within `n_T`
-  - the selected threshold \(\theta^\*\)
+  - the selected threshold θ\*
 
 These parameters are required for optional full-trajectory phase identification.
 
@@ -138,7 +138,7 @@ The overall workflow is identical to that for pure lipid systems, except that **
 
 **Outputs**
 - Phase label matrix of shape `n_T × n_lipids` for the last 1 μs.
-- A `parameters.json` file containing density normalization parameters and \(\theta^\*\).
+- A `parameters.json` file containing density normalization parameters and θ\*.
 
 ---
 
@@ -153,7 +153,7 @@ If phase labels for the entire trajectory are required, run the full-trajectory 
 
 1. Pixelize the membrane and compute pixel densities.
 2. Normalize pixel densities using the mean densities stored in `parameters.json`.
-3. Classify pixels directly using the stored threshold \(\theta^\*\).
+3. Classify pixels directly using the stored threshold θ\*.
 4. Back-map pixel labels to individual lipids.
 
 **Output**
@@ -170,7 +170,7 @@ If phase labels for the entire trajectory are required, run the full-trajectory 
 
 **Outputs**
 - Lipid phase labels (`n_T × n_lipids`, `0` = Ld, `1` = Lo)
-- `parameters.json` (density statistics and \(\theta^\*\))
+- `parameters.json` (density statistics and θ\*)
 
 ---
 
