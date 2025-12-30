@@ -50,6 +50,7 @@ Phase_identification/
 │
 ├── analysis/
 │   └── summary.ipynb                             # Data statistics & postprocessing
+│   └── leaflet_assignment.ipynb                  # Leaflet assignment file generation
 │   └── Voronoi_area_*.py                         # Area-per-lipid (APL) calculations
 │
 ├── leaflet/
@@ -112,6 +113,8 @@ Prepare a **leaflet assignment file** for the system of interest.
 > **Important:**  
 > The lipid ordering in this file must be consistent with the ordering used in the trajectory and topology files.
 
+We provide `analysis/leaflet_assignment.ipynb` as an example workflow for one system. Please adapt the notebook to your own system (e.g., update lipid selections, residue IDs, and ensure consistent lipid ordering).
+
 ---
 
 ### 2. Phase identification on the last 1 μs
@@ -123,7 +126,7 @@ This step determines the optimal classification threshold θ\* and stores normal
 
 #### 2.1 Pure lipid systems (no protein)
 
-Run the notebook:**scripts_for_phase_identification/phase_identification_pure_lipids.ipynb**
+Run the notebook: `phase_identification_pure_lipids.ipynb`
 
 **Workflow**
 
@@ -134,15 +137,12 @@ Run the notebook:**scripts_for_phase_identification/phase_identification_pure_li
    For the last **1 μs**, atom number densities are calculated for each voxel and averaged every **5 ns**.
 
 3. **Normalization and GMM fitting**  
-   Pixels were then defined as the two-dimensional projections of these voxels onto the membrane plane. Pixel densities are normalized and fitted using a Gaussian Mixture Model (GMM).
+   Pixels were then defined as the two-dimensional projections of these voxels onto the membrane plane. Normed pixel densities are normalized and fitted using a Gaussian Mixture Model (GMM). The discrimination threshold θ\* was then derived from the fitted model to separate the two phases.
 
-4. **Selection of θ\***  
-   Based on visualization, an optimal threshold θ\* is selected.
-
-5. **Pixel classification**  
+4. **Pixel classification**  
    Each pixel is classified using θ\*.
 
-6. **Back-mapping to lipids**  
+5. **Back-mapping to lipids**  
    Pixel phase labels are mapped back to individual lipids.
 
 **Phase label definition**
@@ -188,7 +188,7 @@ If phase labels for the entire trajectory are required, run the full-trajectory 
 
 **Output**
 - Full-trajectory phase label matrix of shape `n_T × n_lipids`
-  (`0` = Ld, `1` = Lo).
+  (`0` = Ld, `1` = Lo) in `xxx.xvg`.
 
 ---
 
@@ -199,7 +199,7 @@ If phase labels for the entire trajectory are required, run the full-trajectory 
 - Leaflet assignment file (`0` = upper leaflet, `1` = lower leaflet)
 
 **Outputs**
-- Lipid phase labels (`n_T × n_lipids`, `0` = Ld, `1` = Lo)
+- `xxx.xvg` Lipid phase labels (`n_T × n_lipids`, `0` = Ld, `1` = Lo)
 - `parameters.json` (density statistics and θ\*)
 
 ---

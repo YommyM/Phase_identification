@@ -26,7 +26,6 @@
 plot/input/area_dpdo280k
 plot/input/threshold
 plot/output/tmp
-# # 但保留所有目录本身（包括 data/ 和它的所有子目录）
+*membrane_utils.py
 # !md_data/**/
 # !md_data/**/README.txt
-*membrane_utils.py
