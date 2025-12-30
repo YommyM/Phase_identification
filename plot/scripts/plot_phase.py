@@ -240,13 +240,13 @@ if(sys == 'dpdo280k'):
     tit = 'Binary mixture 280 K'
 elif(sys == 'dpdo290k'):
     tit = 'Binary mixture 290 K'
-elif(sys == 'dpdocchl280k'):
+elif(sys == 'dpdochl280k'):
     tit = 'Ternary mixture 280 K'
 elif(sys == 'dpdochl290k'):
     tit = 'Ternary mixture 290 K'
 elif(sys == 'psmdopochl'):
     tit = 'Quaternary mixture 300 K'
-
+# print(sys, tit)
 
 for i in range(len(h_up_list)): 
     fig1 = plt.figure(figsize=(3, 3.5))

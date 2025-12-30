@@ -1,6 +1,6 @@
 ## Leaflet File Information
 
-Each leaflet file contains the leaflet assignment for all lipid residues in different systems.  
+Each leaflet file contains the leaflet assignment for all lipids in different systems.  
 The data matrices have the following structure:
 
 - **upper:** 0  

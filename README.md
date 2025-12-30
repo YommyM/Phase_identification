@@ -59,6 +59,120 @@ Phase_identification/
 ```
 
 ---
+## 🚀 Usage: Phase Identification of Lipid Membranes
+
+This repository provides a workflow to identify lipid phases (Ld / Lo) from molecular dynamics trajectories by combining leaflet-resolved lipid densities, pixel-based spatial discretization, and Gaussian Mixture Model (GMM) classification.
+
+Phase labels are assigned at the **per-lipid** level by first classifying membrane pixels and then back-mapping pixel labels to individual lipids.
+
+---
+
+### 1. Leaflet assignment
+
+Prepare a **leaflet assignment file** for the system of interest.
+
+**Definition**
+- `0` → upper leaflet  
+- `1` → lower leaflet  
+
+**File format**
+- Each row corresponds to one trajectory frame.
+- Columns:`[n_fr, lipid1, lipid2, …, lipid1152]`
+
+> **Important:**  
+> The lipid ordering in this file must be consistent with the ordering used in the trajectory and topology files.
+
+---
+
+### 2. Phase identification on the last 1 μs
+
+The recommended workflow is to first perform phase identification on the **last 1 μs** of the trajectory.  
+This step determines the optimal classification threshold \(\theta^\*\) and stores normalization parameters for later use.
+
+---
+
+#### 2.1 Pure lipid systems (no protein)
+
+Run the notebook:**scripts_for_phase_identification/phase_identification_pure_lipids.ipynb**
+
+**Workflow**
+
+1. **Pixelization**  
+   The membrane plane is discretized into a 3D voxels.
+
+2. **Density calculation**  
+   For the last **1 μs**, atom number densities are calculated for each voxel and averaged every **5 ns**.
+
+3. **Normalization and GMM fitting**  
+   Pixels were then defined as the two-dimensional projections of these voxels onto the membrane plane. Pixel densities are normalized and fitted using a Gaussian Mixture Model (GMM).
+
+4. **Selection of \(\theta^\*\)**  
+   Based on visualization, an optimal threshold \(\theta^\*\) is selected.
+
+5. **Pixel classification**  
+   Each pixel is classified using \(\theta^\*\).
+
+6. **Back-mapping to lipids**  
+   Pixel phase labels are mapped back to individual lipids.
+
+**Phase label definition**
+- `0` → Ld (liquid-disordered) or Gel
+- `1` → Lo (liquid-ordered) or L\(\alpha\)
+
+**Outputs**
+- A phase label matrix of shape `n_T × n_lipids`.
+- A `parameters.json` file storing:
+  - mean pixel densities within `n_T`
+  - the selected threshold \(\theta^\*\)
+
+These parameters are required for optional full-trajectory phase identification.
+
+---
+
+#### 2.2 Systems containing proteins
+
+The overall workflow is identical to that for pure lipid systems, except that **pixel density calculation differs** due to the presence of proteins, as described in the manuscript.
+
+**Notes**
+- Users must modify the scripts to correctly handle **protein residue IDs (resid)** and **lipid residue IDs (resid)** for their specific system.
+
+**Outputs**
+- Phase label matrix of shape `n_T × n_lipids` for the last 1 μs.
+- A `parameters.json` file containing density normalization parameters and \(\theta^\*\).
+
+---
+
+### 3. (Optional) Full-trajectory phase identification (pure lipid systems)
+
+If phase labels for the entire trajectory are required, run the full-trajectory pipeline for pure lipid systems using:
+
+- Shell script: `run_pure_lipids.sh`
+- Python script: `phase_identification_pure_lipids.py`
+
+**Workflow**
+
+1. Pixelize the membrane and compute pixel densities.
+2. Normalize pixel densities using the mean densities stored in `parameters.json`.
+3. Classify pixels directly using the stored threshold \(\theta^\*\).
+4. Back-map pixel labels to individual lipids.
+
+**Output**
+- Full-trajectory phase label matrix of shape `n_T × n_lipids`
+  (`0` = Ld, `1` = Lo).
+
+---
+
+### Summary of inputs and outputs
+
+**Inputs**
+- MD trajectory and topology files
+- Leaflet assignment file (`0` = upper leaflet, `1` = lower leaflet)
+
+**Outputs**
+- Lipid phase labels (`n_T × n_lipids`, `0` = Ld, `1` = Lo)
+- `parameters.json` (density statistics and \(\theta^\*\))
+
+---
 
 ## ⚙️ Environment Setup
 
