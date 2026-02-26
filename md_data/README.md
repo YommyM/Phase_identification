@@ -2,6 +2,25 @@
 
 This document summarizes the simulation trajectories and residue index mappings for each system. In addition, for each system, the corresponding directory contains the parameter file (.tpr), as well as the initial and final configurations (with water molecules and ions removed).
 
+## 🔗 Raw Data
+
+The original simulation trajectories are publicly available on Hugging Face Datasets:
+
+- Dataset: https://huggingface.co/datasets/yzdai/md-trajectories  
+- DOI: 10.57967/hf/7451
+
+If you use the raw data in your work, please cite:
+
+```bibtex
+@misc{yuzhuo_dai_2026,
+  author       = {yuzhuo dai and Ruo-Xu Gu and SJTU},
+  title        = {md-trajectories (Revision 9e56319)},
+  year         = {2026},
+  url          = {https://huggingface.co/datasets/yzdai/md-trajectories},
+  doi          = {10.57967/hf/7451},
+  publisher    = {Hugging Face}
+}
+```
 ---
 
 ## 1. DPDO Systems

@@ -212,3 +212,23 @@ Clone the repository and install dependencies:
 git clone https://github.com/YommyM/Phase_identification.git
 cd Phase_identification
 pip install -r requirements.txt
+```
+
+---
+
+## 📚 Citation
+
+If you find this work useful, please consider citing our paper:
+
+**Dai, Y.; Zhao, J.; Wang, B.; Liang, Q.; Gu, R.-X.**  
+*Recognition of Coexisting Phases in Model Membranes via an Unsupervised Method.*  
+**Journal of Chemical Information and Modeling**, 2026.
+
+```bibtex
+@article{dai2026recognition,
+  title={Recognition of Coexisting Phases in Model Membranes via an Unsupervised Method},
+  author={Dai, Yuzhuo and Zhao, Jianwei and Wang, Beibei and Liang, Qing and Gu, Ruo-Xu},
+  journal={Journal of Chemical Information and Modeling},
+  year={2026},
+  publisher={ACS Publications}
+}
